@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="../plugins/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../css/global.css" media="all" />
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+	<div style="padding: 15px;">
+
+		<div class="layui-tab layui-tab-brief">
+			<ul class="layui-tab-title">
+				<li class="layui-this">预览</li>
+				<li class="">查看代码</li>
+				<li>帮助</li>
+			</ul>
+		</div>
+
+
+	<form class="layui-form" action="">
+	  <div class="layui-form-item">
+		  <div class="layui-inline">
+		      <div class="layui-input-inline">
+		        <select name="modules" lay-verify="required" lay-search="">
+		          <option value="">手机号</option>
+		          <option value="1">layer</option>
+		          <option value="2">form</option>
+		          <option value="3">layim</option>
+		          <option value="4">element</option>
+		        </select>
+		      </div>
+		    </div>
+		     <div class="layui-inline">
+		      <div class="layui-input-inline">
+		        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+		      </div>
+		    </div>
+		    <div class="layui-inline">
+		      <label class="layui-form-label">会员 类型</label>
+		      <div class="layui-input-inline">
+		        <select name="modules" lay-verify="required" lay-search="">
+		          <option value="">直接选择或搜索选择</option>
+		          <option value="1">layer</option>
+		          <option value="2">form</option>
+		          <option value="3">layim</option>
+		          <option value="4">element</option>
+		        </select>
+		      </div>
+		    </div>
+		    <div class="layui-form-item layui-inline">
+			    <div class="layui-input-block">
+			      <button class="layui-btn" lay-submit="" lay-filter="demo1">查询</button>
+			    </div>
+			</div>
+		</div> 
+	</form>	
+
+	<table class="layui-hide" id="test"></table>
+</div>
+
+
+<script src="../plugins/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'../demo/kh.json'
+    ,cellMinWidth: 180 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+    ,cols: [[
+      {field:'usernum', width:"20%", title: '客户编号'}
+      ,{field:'username', width:"20%", title: '手机号码'}
+      ,{field:'pro', width:"171", title: '会员类型'}
+      ,{field:'time', width:"10%", title: '注册来源'}
+      ,{field:'money', title: '注册时间', width: '20%', minWidth: "15%"} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+      ,{field:'phone', width:"20%",title: '宜泉注册时间'}
+    ]]
+    ,page: true
+  });
+});
+
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //指定允许上传的文件类型
+  upload.render({
+    elem: '#test3'
+    ,url: '/upload/'
+    ,accept: 'file' //普通文件
+    ,done: function(res){
+      console.log(res)
+    }
+  });
+});
+
+
+
+
+</script>
+</body>
+</html>
